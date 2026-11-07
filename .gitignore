@@ -1,0 +1,8 @@
+generated-results/
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+.env
+*.safetensors
+*.pt
+*.pth

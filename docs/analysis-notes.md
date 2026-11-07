@@ -30,6 +30,8 @@ The original workflow used local GPU scoring followed by CPU analysis of saved P
 
 To obtain upstream resources without keeping model caches in this repository, use the [official ReasonEval setup and usage instructions](https://github.com/GAIR-NLP/ReasonEval) and download [ProcessBench](https://huggingface.co/datasets/Qwen/ProcessBench). Record exact upstream revisions and environment versions for any new run. The current dataset may contain annotation revisions relative to the saved course-project artifacts.
 
-ProcessBench and the ReasonEval-7B model cards list Apache-2.0. Their upstream terms apply to those resources; this repository does not relicense upstream code or weights. No model weights, caches, full benchmark copies, or original submission notebooks are included.
+The ProcessBench dataset card lists Apache-2.0; its card and license are bundled with the frozen benchmark snapshot. Public copies of all five available course notebooks and the three saved data/result files are included. Notebook copies remove identifiers and private paths, adapt bootstrapping, and correct known editorial errors; data/result bytes are unchanged. See [notebook guide](../notebooks/README.md), [data attribution](../F-data/README.md), and [source manifest](source-manifest.csv).
+
+Model licenses are separate: the ReasonEval-7B model card and repository give differing license descriptions. Consult upstream terms before redistributing model weights. This repository does not relicense upstream code or weights and includes no model weights or caches.
 
 The original presentation is omitted from this public repository because it displays a student identifier. A public-safe presentation link can be added after that copy is prepared.

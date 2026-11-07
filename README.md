@@ -42,7 +42,21 @@ For this project, I practiced the full research workflow: **reviewing papers, fi
 | **Data pipeline** | pandas, Parquet | Prepare benchmark labels and preserve scores for later analysis. |
 | **Analysis & visualization** | Matplotlib, Google Colab | CPU analysis, metric comparisons, and step-level visual explanations. |
 
-[Explore the results](#key-visuals) · [Generator summary](generator-summary.csv) · [Analysis notes](docs/analysis-notes.md)
+[Explore the results](#key-visuals) · [Notebooks & Colab](notebooks/README.md) · [Data & scores](F-data/README.md) · [Analysis notes](docs/analysis-notes.md)
+
+## Notebooks and data
+
+All five available notebook versions and the three saved data/result files are bundled here. Start with the clean notebooks; the saved-output copies preserve the original visual record.
+
+| Notebook | Purpose | Open |
+| --- | --- | --- |
+| **0 — Documentation** | Research question, dataset rationale, timeline, and references. | [GitHub](notebooks/clean/F-chelsea-zhao-0.ipynb) · [Colab](https://colab.research.google.com/github/rulangyuezhao-cmd/mie1512-reasoneval-portfolio/blob/main/notebooks/clean/F-chelsea-zhao-0.ipynb) |
+| **1 — Data preparation** | CPU data exploration and 570-solution stratified sampling. | [GitHub](notebooks/clean/F-chelsea-zhao-1.ipynb) · [Colab](https://colab.research.google.com/github/rulangyuezhao-cmd/mie1512-reasoneval-portfolio/blob/main/notebooks/clean/F-chelsea-zhao-1.ipynb) |
+| **2 — Final analysis** | CPU metrics and figures from the bundled scores. | [GitHub](notebooks/clean/F-chelsea-zhao-2.ipynb) · [Colab](https://colab.research.google.com/github/rulangyuezhao-cmd/mie1512-reasoneval-portfolio/blob/main/notebooks/clean/F-chelsea-zhao-2.ipynb) |
+
+**[Browse notebooks with saved outputs](notebooks/with-saved-outputs/)** · **[Browse bundled Parquet and CSV files](F-data/)**
+
+The Colab bootstrap retrieves this repository and reads its bundled data; no private Drive mount is required. Public copies remove student identifiers and private paths. See the [notebook guide](notebooks/README.md) for changes and reading order. The original GPU inference notebook remains missing; Notebook 2 analyzes saved outputs.
 
 ## Reasoning quality, step by step
 
@@ -116,7 +130,7 @@ Here, **in-distribution (ID)** and **out-of-distribution (OOD)** refer to the ev
 
 **Source distinction:** PRM800K is the pretrained evaluator's training source; I did not retrain the model on it. My evaluation uses the four **ProcessBench subsets** above. The original ReasonEval paper's **MR-MATH** and **MR-GSM8K** datasets provide reference context and were not the datasets scored in this run. See the [ReasonEval paper](https://arxiv.org/html/2404.05692v2) and [ProcessBench dataset card](https://huggingface.co/datasets/Qwen/ProcessBench).
 
-The saved dataset and scoring results contain matching unique IDs, with no missing result fields. Available source notebooks cover documentation, data preparation, and CPU analysis of precomputed scores. This repository presents the selected visual results and a compact [generator summary](generator-summary.csv).
+The saved dataset and scoring results contain matching unique IDs, with no missing result fields. Bundled notebooks cover documentation, data preparation, and CPU analysis of precomputed scores. This repository presents the selected visual results and a compact [generator summary](generator-summary.csv).
 
 The original inference notebook still needs to be located to complete the reproduction workflow. These figures analyze an existing run; they do not constitute a fresh inference reproduction. See [analysis notes](docs/analysis-notes.md) for metric definitions and scope.
 
