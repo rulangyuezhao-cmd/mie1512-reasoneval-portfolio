@@ -12,6 +12,12 @@
 
 I implemented a **local LLM inference pipeline** for ReasonEval-7B and used it to **evaluate the mathematical reasoning of 12 language models** on ProcessBench: **MATH, GSM8K, OlympiadBench, and OmniMath**. The evaluation spans a MATH-domain reference and out-of-distribution problem domains, testing reasoning quality beyond final-answer accuracy.
 
+## Course context
+
+This project was completed for **MIE1512H — Data Management for Analytics**, as part of my **Master of Engineering (MEng) at the University of Toronto**. The course is a research seminar connecting published analytics research with open datasets, data preparation, and computational notebooks. Its project emphasizes reproducing published research with attention to data management. [Course description](https://sgs.calendar.utoronto.ca/course/mie1512h).
+
+For this project, I practiced the full research workflow: **reviewing papers, finding and comparing datasets on Hugging Face, selecting suitable human annotations, preparing the data, implementing a local LLM evaluator, and critically analyzing its results**.
+
 | Major concept | My contribution |
 | --- | --- |
 | **Local LLM implementation** | Adapted the pretrained ReasonEval-7B evaluator for local inference on an NVIDIA RTX 5070, with GPU/CPU offloading and saved scoring outputs. |
