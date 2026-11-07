@@ -19,6 +19,8 @@ I implemented a **local LLM inference pipeline** for ReasonEval-7B and used it t
 
 **3,400 solutions · 12 generators · 4 benchmarks**
 
+**≈30 hours documented project effort · 2.30 hours aggregate inference time**
+
 ## Tech stack
 
 | Area | Tools | How I used them |
@@ -51,6 +53,20 @@ The highlighted step contains the first human-annotated error: an incorrect addi
 - Built visual explanations linking individual reasoning steps to scores and human labels.
 
 ReasonEval is the locally implemented evaluator; the 12 generators supplied the benchmark solutions. The project uses pretrained model weights and focuses on inference engineering and evaluation.
+
+## Project timeline
+
+| Phase | Recorded effort | Milestone |
+| --- | ---: | --- |
+| **Prototype** | **≈10 h** | Set up the local environment, adapt the evaluator, prepare data, and score a 570-solution sample. |
+| **Final phase** | **≈20 h additional** | Scale to 3,400 solutions, recover from GPU memory issues, produce analysis and figures, explore extensions, and prepare the report and notebooks. |
+| **Total** | **≈30 h** | Documented project effort; primary-paper reading and GPU compute time were tracked separately. |
+
+**Setup and packaging, within those totals:** dependency/environment configuration **0.5 h**; model-class integration, tokenizer and device mapping **1.5 h**; final Parquet migration, notebook documentation and cleanup **2.5 h**.
+
+**Inference:** the saved `inference_time_sec` values sum to **8,281 seconds — 2 h 18 min 1 s** across all 3,400 solutions (**2.44 s mean; 2.10 s median**). This is aggregate recorded scoring time, not a measured end-to-end wall-clock duration; model download/loading, setup, and unrecorded interruptions are not captured by that sum.
+
+**Model weights:** used pretrained ReasonEval-7B weights for local inference with GPU/CPU offloading. Weight download and initial loading durations were not separately recorded. The preserved notes document offloading; a specific 4-bit or 8-bit quantization setting has not been recovered.
 
 ## Key visuals
 
