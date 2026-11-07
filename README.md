@@ -1,4 +1,4 @@
-# ReasonEval on ProcessBench
+# ReasonEval: Local LLM Implementation & Evaluation
 
 **MIE1512 course project · Chelsea Zhao**
 
@@ -10,7 +10,12 @@
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge)
 ![Google Colab](https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=black)
 
-I applied ReasonEval-7B to human-annotated mathematical solutions to evaluate the reasoning behind the final answer.
+I implemented a **local LLM inference pipeline** for ReasonEval-7B and used it to **evaluate the mathematical reasoning of 12 language models** on ProcessBench. The project connects practical model deployment with evaluation of reasoning quality beyond final-answer accuracy.
+
+| Major concept | My contribution |
+| --- | --- |
+| **Local LLM implementation** | Adapted the pretrained ReasonEval-7B evaluator for local inference on an NVIDIA RTX 5070, with GPU/CPU offloading and saved scoring outputs. |
+| **LLM evaluation** | Scored reasoning steps for validity and redundancy, then assessed error detection against human annotations across four benchmark subsets. |
 
 **3,400 solutions · 12 generators · 4 benchmarks**
 
@@ -18,7 +23,8 @@ I applied ReasonEval-7B to human-annotated mathematical solutions to evaluate th
 
 | Area | Tools | How I used them |
 | --- | --- | --- |
-| **Model evaluation** | Python, PyTorch, Hugging Face | Local ReasonEval-7B scoring of reasoning steps. |
+| **Local LLM implementation** | Python, PyTorch, Hugging Face | Load and run the pretrained ReasonEval-7B evaluator locally, with GPU/CPU offloading. |
+| **LLM evaluation** | ProcessBench, pandas, Matplotlib | Compare evaluator scores with human reasoning-error labels and analyze differences across generators. |
 | **Data pipeline** | pandas, Parquet | Prepare benchmark labels and preserve scores for later analysis. |
 | **Analysis & visualization** | Matplotlib, Google Colab | CPU analysis, metric comparisons, and step-level visual explanations. |
 
@@ -30,13 +36,21 @@ The highlighted step contains the first human-annotated error: an incorrect addi
 
 ![ReasonEval scores for a solution with an annotated calculation error](figures/step-scoring-example.png)
 
-## What I built
+## Local LLM implementation
 
-| Component | What it does | Built with |
-| --- | --- | --- |
-| **Data preparation** | Organizes ProcessBench labels, reasoning steps, and generator metadata. | Python, pandas, Parquet |
-| **Local scoring** | Applies ReasonEval-7B and preserves step- and solution-level scores. | PyTorch, Hugging Face |
-| **CPU analysis** | Compares detection performance and score distributions using saved results. | pandas, Matplotlib, Colab |
+- Adapted the pretrained, Mistral-based **ReasonEval-7B** evaluator for local execution using Python, PyTorch, and Hugging Face.
+- Configured **GPU/CPU offloading** to run inference on an NVIDIA RTX 5070 workstation.
+- Built a scoring workflow with checkpointed outputs, preserving step- and solution-level validity and redundancy scores for later analysis.
+- Stored results in **Parquet**, allowing downstream analysis to run on CPU without reloading the LLM.
+
+## LLM evaluation
+
+- Evaluated **existing mathematical solutions from 12 LLM generators**, spanning GSM8K, MATH, OlympiadBench, and OmniMath.
+- Compared ReasonEval's validity scores with **human-annotated reasoning errors**, measuring how well the evaluator distinguishes valid and invalid solutions.
+- Analyzed **solution-level AUC**, validity and redundancy distributions, and low-validity flags among correct-final-answer solutions.
+- Built visual explanations linking individual reasoning steps to scores and human labels.
+
+ReasonEval is the locally implemented evaluator; the 12 generators supplied the benchmark solutions. The project uses pretrained model weights and focuses on inference engineering and evaluation.
 
 ## Key visuals
 
