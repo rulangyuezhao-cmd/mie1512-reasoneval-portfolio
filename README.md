@@ -12,6 +12,12 @@
 
 I implemented a **local LLM inference pipeline** for ReasonEval-7B and used it to **evaluate the mathematical reasoning of 12 language models** on ProcessBench: **MATH, GSM8K, OlympiadBench, and OmniMath**. The evaluation spans a MATH-domain reference and out-of-distribution problem domains, testing reasoning quality beyond final-answer accuracy.
 
+## Objective: make reasoning review scalable
+
+Manually checking every step of thousands of mathematical solutions requires substantial human time and expertise. Checking only the final answer can also miss flawed logic or unnecessary steps. Automated reasoning evaluation offers a way to screen solutions consistently and flag potential issues for closer review. [ReasonEval](https://arxiv.org/abs/2404.05692) and [ProcessBench](https://arxiv.org/abs/2412.06559) motivate this focus on reasoning processes.
+
+**My objective:** implement a local LLM evaluator that scores reasoning steps automatically, then test how reliably its judgments agree with human annotations across familiar and harder problem domains. The intended benefit is to reduce the manual review burden while preserving human oversight; this project measures evaluator performance, not a demonstrated reduction in human-review costs.
+
 ## Course context
 
 This project was completed for **MIE1512H — Data Management for Analytics**, as part of my **Master of Engineering (MEng) at the University of Toronto**. The course is a research seminar connecting published analytics research with open datasets, data preparation, and computational notebooks. Its project emphasizes reproducing published research with attention to data management. [Course description](https://sgs.calendar.utoronto.ca/course/mie1512h).
@@ -114,12 +120,22 @@ The saved dataset and scoring results contain matching unique IDs, with no missi
 
 The original inference notebook still needs to be located to complete the reproduction workflow. These figures analyze an existing run; they do not constitute a fresh inference reproduction. See [analysis notes](docs/analysis-notes.md) for metric definitions and scope.
 
-## Future work
+## Future work: knowing when the evaluator is uncertain
 
-Extend the evaluation with confidence calibration, comparisons against other evaluators using precomputed outputs, and analysis of how reasoning length affects error detection. Calibration is a proposed extension, separate from the completed scoring analysis.
+Following my professor's recommendation, the next research direction is **uncertainty calibration**, guided by Park et al.'s *Know What You Don't Know: Uncertainty Calibration of Process Reward Models* (NeurIPS 2025).
 
-## References
+**[Paper](https://arxiv.org/abs/2506.09338) · [Official GitHub](https://github.com/young-j-park/prm-calibration) · [Project and visual explanations](https://young-j-park.github.io/know-what-you-dont-know/)**
 
-- **ReasonEval:** Xia et al., [*Evaluating Mathematical Reasoning Beyond Accuracy*](https://arxiv.org/abs/2404.05692), AAAI 2025. [Official code](https://github.com/GAIR-NLP/ReasonEval).
-- **Evaluation data:** [Qwen/ProcessBench](https://huggingface.co/datasets/Qwen/ProcessBench). The step example contains a ProcessBench problem and generated solution; the scores and visual analysis are from this project.
-- **Calibration direction:** Park et al., [*Know What You Don't Know: Uncertainty Calibration of Process Reward Models*](https://arxiv.org/abs/2506.09338), NeurIPS 2025.
+The paper examines how process reward models can be overconfident and studies calibration of their success estimates. For this project, the proposed extension is to investigate uncertainty-aware evaluation: compare calibration methods on held-out data, examine shifts across generators and problem difficulty, and identify uncertain cases that may warrant human review. Applying the paper's approach to ReasonEval requires matching the calibration target to the evaluation task; the current validity scores are not calibrated probabilities.
+
+Other extensions include comparing evaluators using precomputed outputs and examining how the number of reasoning steps affects error detection. **These are future directions, separate from the completed local inference and scoring analysis.**
+
+## Three core papers
+
+| Paper | Role in this project | Resources |
+| --- | --- | --- |
+| **Xia et al. — Evaluating Mathematical Reasoning Beyond Accuracy** · AAAI 2025 | **Method:** ReasonEval's step-level validity and redundancy evaluation. | [Paper](https://arxiv.org/abs/2404.05692) · [GitHub](https://github.com/GAIR-NLP/ReasonEval) |
+| **Zheng et al. — ProcessBench: Identifying Process Errors in Mathematical Reasoning** · ACL 2025 | **Benchmark:** human-annotated solutions used to evaluate reasoning-error detection. | [Paper](https://arxiv.org/abs/2412.06559) · [GitHub](https://github.com/QwenLM/ProcessBench) · [Dataset](https://huggingface.co/datasets/Qwen/ProcessBench) |
+| **Park et al. — Know What You Don't Know: Uncertainty Calibration of Process Reward Models** · NeurIPS 2025 | **Future work:** uncertainty calibration and more reliable use of evaluator scores. | [Paper](https://arxiv.org/abs/2506.09338) · [GitHub](https://github.com/young-j-park/prm-calibration) · [Project](https://young-j-park.github.io/know-what-you-dont-know/) |
+
+The step-scoring example contains a ProcessBench problem and generated solution. Scores and visual analysis shown here are from this course project; the evaluation method and benchmark are credited above.
