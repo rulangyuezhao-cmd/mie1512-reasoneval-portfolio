@@ -10,7 +10,7 @@
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge)
 ![Google Colab](https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=black)
 
-I implemented a **local LLM inference pipeline** for ReasonEval-7B and used it to **evaluate the mathematical reasoning of 12 language models** on ProcessBench. The project connects practical model deployment with evaluation of reasoning quality beyond final-answer accuracy.
+I implemented a **local LLM inference pipeline** for ReasonEval-7B and used it to **evaluate the mathematical reasoning of 12 language models** on ProcessBench: **MATH, GSM8K, OlympiadBench, and OmniMath**. The evaluation spans a MATH-domain reference and out-of-distribution problem domains, testing reasoning quality beyond final-answer accuracy.
 
 | Major concept | My contribution |
 | --- | --- |
@@ -74,13 +74,19 @@ This chart measures the fraction of correct-final-answer solutions with a soluti
 
 ## Dataset and reproducibility
 
-| ProcessBench subset | Solutions |
-| --- | ---: |
-| GSM8K | 400 |
-| MATH | 1,000 |
-| OlympiadBench | 1,000 |
-| OmniMath | 1,000 |
-| **Total** | **3,400** |
+**Datasets and distribution shifts.** The pretrained ReasonEval evaluator was trained on **PRM800K**, whose annotated solutions are based on **MATH** problems. Relative to that training domain, I use the following framing:
+
+| ProcessBench subset used | Solutions | Distribution framing | What it tests |
+| --- | ---: | --- | --- |
+| **MATH** | 1,000 | In-distribution-like at the problem-domain level | Competition mathematics from the same source domain as PRM800K. |
+| **GSM8K** | 400 | Out-of-distribution: grade-school domain | Transfer to simpler, multi-step arithmetic word problems. |
+| **OlympiadBench** | 1,000 | Out-of-distribution: harder domain | Transfer to olympiad-level mathematical reasoning. |
+| **OmniMath** | 1,000 | Out-of-distribution: harder domain | Transfer to a broad collection of olympiad-level problems. |
+| **Total** | **3,400** | | |
+
+Here, **in-distribution (ID)** and **out-of-distribution (OOD)** refer to the evaluator's training domain. MATH is an ID-like reference, not a claim that the full ProcessBench distribution matches training: solution generators, writing styles, and annotations can also shift. This is a domain-based framing rather than a measured distribution test.
+
+**Source distinction:** PRM800K is the pretrained evaluator's training source; I did not retrain the model on it. My evaluation uses the four **ProcessBench subsets** above. The original ReasonEval paper's **MR-MATH** and **MR-GSM8K** datasets provide reference context and were not the datasets scored in this run. See the [ReasonEval paper](https://arxiv.org/html/2404.05692v2) and [ProcessBench dataset card](https://huggingface.co/datasets/Qwen/ProcessBench).
 
 The saved dataset and scoring results contain matching unique IDs, with no missing result fields. Available source notebooks cover documentation, data preparation, and CPU analysis of precomputed scores. This repository presents the selected visual results and a compact [generator summary](generator-summary.csv).
 
