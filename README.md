@@ -2,7 +2,27 @@
 
 **MIE1512 course project · Chelsea Zhao**
 
-Evaluating mathematical reasoning beyond the final answer. I applied ReasonEval-7B to **3,400 human-annotated solutions from 12 language models**, then analyzed its judgments across four mathematical benchmarks.
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)
+![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Parquet](https://img.shields.io/badge/Parquet-245A81?style=for-the-badge)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge)
+![Google Colab](https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=black)
+
+I applied ReasonEval-7B to human-annotated mathematical solutions to evaluate the reasoning behind the final answer.
+
+**3,400 solutions · 12 generators · 4 benchmarks**
+
+## Tech stack
+
+| Area | Tools | How I used them |
+| --- | --- | --- |
+| **Model evaluation** | Python, PyTorch, Hugging Face | Local ReasonEval-7B scoring of reasoning steps. |
+| **Data pipeline** | pandas, Parquet | Prepare benchmark labels and preserve scores for later analysis. |
+| **Analysis & visualization** | Matplotlib, Google Colab | CPU analysis, metric comparisons, and step-level visual explanations. |
+
+[Explore the results](#key-visuals) · [Generator summary](generator-summary.csv) · [Analysis notes](docs/analysis-notes.md)
 
 ## Reasoning quality, step by step
 
@@ -12,13 +32,11 @@ The highlighted step contains the first human-annotated error: an incorrect addi
 
 ## What I built
 
-| Component | What it does |
-| --- | --- |
-| **Data preparation** | Organizes ProcessBench labels, reasoning steps, and generator metadata. |
-| **Local scoring** | Applies ReasonEval-7B and preserves step- and solution-level scores. |
-| **CPU analysis** | Uses saved results to compare detection performance, score distributions, and rates of low validity scores among correct final answers. |
-
-**Tools:** Python · PyTorch · pandas · Parquet · Matplotlib · Google Colab
+| Component | What it does | Built with |
+| --- | --- | --- |
+| **Data preparation** | Organizes ProcessBench labels, reasoning steps, and generator metadata. | Python, pandas, Parquet |
+| **Local scoring** | Applies ReasonEval-7B and preserves step- and solution-level scores. | PyTorch, Hugging Face |
+| **CPU analysis** | Compares detection performance and score distributions using saved results. | pandas, Matplotlib, Colab |
 
 ## Key visuals
 
