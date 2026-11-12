@@ -1,6 +1,6 @@
 # ReasonEval: Local LLM Implementation & Evaluation
 
-**MIE1512 course project · Chelsea Zhao**
+**MIE1512H · Data Analytics · Winter 2026 (January–April) · Chelsea Zhao**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
@@ -20,7 +20,7 @@ Manually checking every step of thousands of mathematical solutions requires sub
 
 ## Course context
 
-This project was completed for **MIE1512H — Data Management for Analytics**, as part of my **Master of Engineering (MEng) at the University of Toronto**. The course is a research seminar connecting published analytics research with open datasets, data preparation, and computational notebooks. Its project emphasizes reproducing published research with attention to data management. [Course description](https://sgs.calendar.utoronto.ca/course/mie1512h).
+This project was completed for **MIE1512H — Data Analytics**, in **Winter 2026 (January–April 2026)**, as part of my **Master of Engineering (MEng) at the University of Toronto**. The title and term follow my academic history; the date range identifies the course session. The course is a research seminar connecting published analytics research with open datasets, data preparation, and computational notebooks. Its project emphasizes reproducing published research with attention to data management. [Course description](https://sgs.calendar.utoronto.ca/course/mie1512h).
 
 For this project, I practiced the full research workflow: **reviewing papers, finding and comparing datasets on Hugging Face, selecting suitable human annotations, preparing the data, implementing a local LLM evaluator, and critically analyzing its results**.
 
