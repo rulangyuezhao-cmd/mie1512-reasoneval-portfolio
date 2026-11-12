@@ -12,6 +12,20 @@
 
 I implemented a **local LLM inference pipeline** for ReasonEval-7B and used it to **evaluate the mathematical reasoning of 12 language models** on ProcessBench: **MATH, GSM8K, OlympiadBench, and OmniMath**. The evaluation spans a MATH-domain reference and out-of-distribution problem domains, testing reasoning quality beyond final-answer accuracy.
 
+## Project at a glance
+
+**Question**  
+How reliably can a local LLM evaluator identify reasoning errors against human annotations across four mathematical benchmark subsets?
+
+**Result**  
+Completed evaluation of 3,400 solutions from 12 generators and produced saved scores, per-generator comparisons and step-level visual analysis. The public notebooks analyze those saved outputs; the original GPU inference notebook has not been recovered.
+
+**Methods**
+
+- **Deep learning — LLM inference:** pretrained ReasonEval-7B with GPU/CPU offloading.
+- **Data processing:** benchmark preparation and persisted Parquet scoring outputs.
+- **Model evaluation:** comparison with human reasoning-error labels, solution-level ROC AUC, and validity/redundancy distributions.
+
 ## Objective: make reasoning review scalable
 
 Manually checking every step of thousands of mathematical solutions requires substantial human time and expertise. Checking only the final answer can also miss flawed logic or unnecessary steps. Automated reasoning evaluation offers a way to screen solutions consistently and flag potential issues for closer review. [ReasonEval](https://arxiv.org/abs/2404.05692) and [ProcessBench](https://arxiv.org/abs/2412.06559) motivate this focus on reasoning processes.
